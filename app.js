@@ -10,7 +10,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://172.20.10.3:3000", // your frontend origin
+  origin: process.env.CLIENT_URL || "https://departmental-lecture-repository-sys.vercel.app/", // your frontend origin
   credentials: true,  // allow cookies, auth headers
 }));app.use(express.json());
 
