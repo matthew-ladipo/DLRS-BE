@@ -13,7 +13,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-     process.env.CLIENT_URL?.trim(), // your frontend
+     "https://departmental-lecture-repository-sys.vercel.app", // your frontend
       "http://localhost:3000", // allow local dev too
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -21,6 +21,10 @@ app.use(
     credentials: true,
   })
 );
+app.use((req, res, next) => {
+  console.log("Incoming Origin:", req.headers.origin);
+  next();
+});
 
 
 
