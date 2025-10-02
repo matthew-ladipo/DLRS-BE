@@ -50,3 +50,18 @@ export const validateResetPassword = (req, res, next) => {
   if (error) return res.status(400).json({ message: error.details[0].message });
   next();
 };
+
+export const validateCreateLecturer = (req, res, next) => {
+  const schema = Joi.object({
+    fullName: Joi.string().min(2).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+    lecturerId: Joi.string().required(),
+    department: Joi.string().required(),
+    specialization: Joi.string().required()
+  });
+
+  const { error } = schema.validate(req.body);
+  if (error) return res.status(400).json({ message: error.details[0].message });
+  next();
+};

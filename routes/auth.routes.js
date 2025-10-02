@@ -1,23 +1,27 @@
 import express from 'express';
-import { 
-  register, 
-  login, 
-  sendEmailToUser, 
-  forgotPassword, 
-  resetPassword 
+import {
+  register,
+  login,
+  createLecturer,
+  sendEmailToUser,
+  forgotPassword,
+  resetPassword
 } from '../controllers/auth.controller.js';
-import { 
-  validateRegister, 
-  validateLogin, 
-  validateForgotPassword, 
-  validateResetPassword 
+import {
+  validateRegister,
+  validateLogin,
+  validateCreateLecturer,
+  validateForgotPassword,
+  validateResetPassword
 } from '../middlewares/validate.middleware.js';
+import { protect, restrictTo } from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
 // Authentication routes
 router.post('/register', validateRegister, register);
 router.post('/login', validateLogin, login);
+router.post('/create-lecturer', protect, restrictTo('admin'), validateCreateLecturer, createLecturer);
 
 // Email verification
 router.get('/verify-email', async (req, res) => {
