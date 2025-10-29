@@ -25,6 +25,10 @@ const swaggerOptions = {
         url: 'http://localhost:8080',
         description: 'Development server',
       },
+      {
+        url: 'https://departmental-lecture-repository-sys.vercel.app',
+        description: 'Production server',
+      },
     ],
     components: {
       securitySchemes: {
